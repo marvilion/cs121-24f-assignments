@@ -17,10 +17,42 @@ public class Main {
 	assert eg.addEdge(e);
 	assert eg.hasEdge(e);
     }
+
+	public static void testUnionGraph() {
+		Graph g1 = new ListGraph();
+		Graph g2 = new ListGraph();
+	
+		assert g1.addNode("node1");
+		assert g1.addNode("node2");
+		assert g1.addEdge("node1", "node2");
+	
+		assert g2.addNode("node3");
+		assert g2.addNode("node4");
+		assert g2.addEdge("node3", "node4");
+	
+		Graph union = g1.union(g2);
+			
+		assert union.hasNode("node1");
+		assert union.hasNode("node2");
+		assert union.hasNode("node3");
+		assert union.hasNode("node4");
+			
+		assert union.hasEdge("node1", "node2");
+		assert union.hasEdge("node3", "node4");
+		assert !union.hasEdge("node2", "node3");
+	
+		assert union.addEdge("node2", "node3");
+		assert union.connected("node1", "node4");
+	
+	
+		assert union.removeEdge("node3", "node4");
+		assert !union.hasEdge("node3", "node4");
+	}
     
     public static void main(String[] args) {
 	test1();
 	test2();
+	testUnionGraph();
     }
 
 }
