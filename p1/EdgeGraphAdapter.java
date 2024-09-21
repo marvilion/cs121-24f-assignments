@@ -48,7 +48,7 @@ public class EdgeGraphAdapter implements EdgeGraph {
     public List<Edge> inEdges(String n) {
         List<Edge> inEdgesList = new ArrayList<>();
         for (String predecessorNode : g.pred(n)){
-            inEdgesList.add(new Edge(n, predecessorNode));
+            inEdgesList.add(new Edge(predecessorNode, n));
         }
         return inEdgesList;
     }
